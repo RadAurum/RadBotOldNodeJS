@@ -1,0 +1,24 @@
+{
+  "name": "pantsubot",
+  "version": "0.0.1",
+  "description": "A multipurpose bot for discord",
+  "main": "bot.js",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.1",
+    "discord.js": "^12.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RadAngel/Pantsubot.git"
+  },
+  "author": "RadAngel",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/RadAngel/Pantsubot/issues"
+  },
+  "homepage": "https://github.com/RadAngel/Pantsubot#readme"
+}
