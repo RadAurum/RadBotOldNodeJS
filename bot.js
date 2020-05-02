@@ -1,6 +1,6 @@
 require('dotenv').config({ path: '.env' })
 const botsettings = process.env;
-const prefix = 'pd-'
+const prefix = 'pd-';
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const ytdl = require('ytdl-core-discord');
