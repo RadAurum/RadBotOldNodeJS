@@ -4,7 +4,6 @@
   "description": "A multipurpose bot for discord",
   "main": "bot.js",
   "dependencies": {
-<<<<<<< HEAD
     "booru": "^2.2.3",
     "bufferutil": "^4.0.1",
     "canvas": "^2.6.1",
@@ -12,10 +11,6 @@
     "cpus": "^1.0.2",
     "discord.js": "github:discordjs/discord.js#master",
     "discord.js-commando": "github:discordjs/Commando#master",
-=======
-    "@discordjs/opus": "^0.3.1",
-    "discord.js": "^12.2.0",
->>>>>>> parent of 2f88e2b... Replace Opus for OpusScript
     "dotenv": "^8.2.0",
     "erlpack": "github:discordapp/erlpack",
     "ffmpeg-static": "^4.2.0",
@@ -24,11 +19,8 @@
     "nekos.life": "^2.0.7",
     "node-emoji": "^1.10.0",
     "node-pre-gyp": "^0.14.0",
-<<<<<<< HEAD
     "node-superfetch": "^0.1.10",
     "opusscript": "0.0.7",
-=======
->>>>>>> parent of 2f88e2b... Replace Opus for OpusScript
     "prism-media": "^1.2.2",
     "random-puppy": "^1.1.0",
     "require-all": "^3.0.0",
