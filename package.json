@@ -38,12 +38,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RadAngel/Pantsubot.git"
+    "url": "git+https://github.com/RadAngelZero/RadBot.git"
   },
   "author": "RadAngel",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/RadAngel/Pantsubot/issues"
+    "url": "https://github.com/RadAngelZero/RadBot/issues"
   },
-  "homepage": "https://github.com/RadAngel/Pantsubot#readme"
+  "homepage": "https://github.com/RadAngelZero/RadBot#readme"
 }
