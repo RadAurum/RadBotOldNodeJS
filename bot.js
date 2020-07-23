@@ -4,14 +4,30 @@ const Discord = require('discord.js');
 const Commando = require('discord.js-commando');
 const ytdl = require('ytdl-core-discord');
 const path = require('path');
-const client = new Commando.CommandoClient({owner:botsettings.OWNER_ID});
-const prefix = 'pd-';
+const prefix = 'rd!';
+const client = new Commando.CommandoClient({ commandPrefix: prefix, owner: botsettings.OWNER_ID });
 
-client.registry.registerCommandsIn(__dirname, 'commands');
+client.registry
+  // Registers your custom command groups
+  .registerGroups([
+    ['bot', 'Bot Commands'],
+    ['other', 'Commands with no category relation']
+  ])
+
+  // Registers all built-in groups, commands, and argument types
+  .registerDefaultTypes()
+
+  // Registers all of your commands in the ./commands/ directory
+  .registerCommandsIn(path.join(__dirname, 'commands'));
+
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
+
+client.on('error', console.error);
+
+// client.on('commandBlock', (msg, rsn, dt) => { console.log(rsn) })
 
 // client.on('message', msg => {
 //   if (msg.content === 'ping') {
