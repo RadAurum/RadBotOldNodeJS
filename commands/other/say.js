@@ -1,50 +1,49 @@
-const { Command } = require('discord.js-commando');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const messageCreate = require('../../events/guild_messages/messageCreate');
 
-module.exports = class Say extends Command {
-    constructor(client) {
-        super(client, {
-            name: 'say',
-            aliases: ['parrot', 'copy'],
-            group: 'other',
-            memberName: 'say',
-            description: 'Replies with the author message',
-            args: [
-                {
-                    key: 'text',
-                    prompt: 'What text would you like the bot to say?',
-                    type: 'string',
-                    default: '',
-                },
-            ],
-            clientPermissions: ['SEND_MESSAGES'],
-        });
-    }
-
-    run(message, { text }) {
-        if (!text) return message.say('No pudo enviar un mensaje vacio');
-        return message.channel.send(text);
-    }
-
-    onBlock(message, reason, Data) {
-        if (reason == 'clientPermissions') {
-            if (Data.missing[0] == 'SEND_MESSAGES') {
-                message.react('🗣️')
-                    .then(r => {
-                        message.react('🚫');
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('say')
+        .setDescription('Repeat the message')
+        .addStringOption((option) =>
+            option
+                .setName('text')
+                .setDescription('Text to repeat')
+                .setRequired(true)
+        ),
+    help: "",
+    async execute(data) {
+        let stringArr;
+        let string;
+        if (data.content !== undefined) {
+            stringArr = data.content.split(" ");
+            stringArr.shift();
+            console.log(stringArr.length)
+            if (stringArr.length == 0) {
+                return await data.reply('No puedo mandar mensajes vacios')
+                    .then(async r => {
+                        setTimeout( async () => {
+                            await r.delete().catch(e => { });
+                        }, 2000)
                     })
-                    .catch(perm => {
-                        message.author.send('Para usar este comando necesto permiso para hablar en el canal/servidor')
-                            .catch(err => {
-                                message.guild.fetch().
-                                    then(guild => {
-                                        console.log(guild.channels.cache.map(ch => ch.name)) 
-                                    })
-                                    
-                                // message.guild.fetch.channels.cache().sort((channelA, channelB) => channelA.position)
-                            });
-                    })
+                    .catch(e => {})
+            }
+            string = stringArr.join(" ");
         }
-    }
-    // console.log(Data);
-}
+        if (data.interaction === undefined) {
+            string = data.options.getString('text')
+            await data.reply(data.options.getString('text')).catch(e => { });
+            await data.deleteReply().catch(e => { });
+        } else {
+            data.delete().catch(e => { });
+        }
+        await data.channel.send(string).catch(async e => {
+            let user = data.author !== undefined ? data.author : data.user
+            await user.createDM()
+                .then(dm => {
+                    dm.send(`No puedo mandar mensajes en el canal #${data.channel.name} en el servidor ${data.guild.name}`).catch(e => { })
+                })
+                .catch(e => { })
+        });
+    },
 };
