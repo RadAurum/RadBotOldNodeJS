@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const messageCreate = require('../../events/guild_messages/messageCreate');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -22,11 +21,11 @@ module.exports = {
             if (stringArr.length == 0) {
                 return await data.reply('No puedo mandar mensajes vacios')
                     .then(async r => {
-                        setTimeout( async () => {
+                        setTimeout(async () => {
                             await r.delete().catch(e => { });
                         }, 2000)
                     })
-                    .catch(e => {})
+                    .catch(e => { })
             }
             string = stringArr.join(" ");
         }
