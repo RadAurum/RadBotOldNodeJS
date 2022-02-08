@@ -30,8 +30,8 @@ module.exports = {
 					assets: {
 						largeText: assets.largeText,
 						smallText: assets.smallText,
-						largeImageURL: assets.largeImageURL(),
-						smallImageURL: assets.smallImageURL()
+						largeImageURL: assets.largeImage ? assets.largeImageURL() : null,
+						smallImageURL: assets.smallImage ? assets.smallImageURL() : null
 					}
 				}
 			} catch (error) {
