@@ -1,6 +1,7 @@
 require('dotenv').config({ path: '../../.env' })
 const botsettings = process.env;
-const { updateRadStatus } = require('./../../services/google/firebase/database')
+const { updateRadStatus } = require('./../../services/google/firebase/database');
+const { dateToUnixTimestamp } = require('./../../functions/date')
 
 module.exports = {
 	name: 'presenceUpdate',
@@ -23,8 +24,8 @@ module.exports = {
 					details: activity.details,
 					state: activity.state,
 					timestamps: {
-						start: parseInt(activity.timestamps.start.getTime() / 1000).toFixed(0),
-						end: activity.timestamps.end ? parseInt(activity.timestamps.end.getTime() / 1000).toFixed(0) : null
+						start: dateToUnixTimestamp(activity.timestamps.start),
+						end: activity.timestamps.end ? dateToUnixTimestamp(activity.timestamps.end) : null
 					},
 					assets: {
 						largeText: assets.largeText,
