@@ -5,6 +5,7 @@ const radStatusRef = ref(database, 'rad-status')
 
 module.exports = {
     async updateRadStatus(activities, status, avatar, username, discriminator) {
+        console.log('updating firebase')
         await set(radStatusRef, {
             activities,
             avatar,
