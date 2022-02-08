@@ -1,19 +1,16 @@
 require('dotenv').config({ path: '.env' });
-const express = require('express');
-const app = express();
 const botsettings = process.env;
 const path = require('path');
 const fs = require('fs');
 const { Client, Intents, Collection } = require('discord.js');
-let port = process.env.port || 3000;
 let intentsArray = Object.entries(Intents.FLAGS);
 let intentsBitsArray = [];
 intentsArray.forEach(e => {
   intentsBitsArray.push(e[1])
 })
+
 const client = new Client({ intents: intentsBitsArray });
 client.commands = new Collection();
-
 function loadFromDirectory(directory, areCommands) {
   fs.readdirSync(directory).forEach(File => {
     const Absolute = path.join(directory, File)
@@ -31,12 +28,4 @@ function loadFromDirectory(directory, areCommands) {
 loadFromDirectory('./events', false);
 loadFromDirectory('./commands', true);
 
-app.get("/", (req, res) => {
-  res.send("Hello World")
-})
-
-app.listen(port, () => {
-  console.log(`Escuchando el puerto http://localhost:${port}`)
-})
-
-client.login(botsettings.TOKEN);
+client.login(botsettings.DISCORD_BOT_TOKEN);

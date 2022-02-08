@@ -5,9 +5,9 @@ module.exports = {
 	async execute(message) {
         console.log(message.interaction)
 		if (message.interaction !== null) return;
-		if (!message.content.startsWith(botsettings.PREFIX)) return;
+		if (!message.content.startsWith(botsettings.DISCORD_PREFIX)) return;
 
-		const commandName = message.content.split(" ")[0].replace(botsettings.PREFIX, '')
+		const commandName = message.content.split(" ")[0].replace(botsettings.DISCORD_PREFIX, '')
 
 		const command = message.client.commands.get(commandName)
 
@@ -22,7 +22,7 @@ module.exports = {
 			await message.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 		}
 
-		// if (message.author.id == botsettings.OWNER_ID) {
+		// if (message.author.id == botsettings.DISCORD_OWNER_ID) {
 		// 	console.log(message);
 		// 	console.log(message.client);
 		// }

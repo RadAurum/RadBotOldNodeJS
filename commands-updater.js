@@ -19,14 +19,14 @@ function loadFromDirectory(directory) {
 
 loadFromDirectory('./commands')
 
-const rest = new REST({ version: '9' }).setToken(botsettings.TOKEN);
+const rest = new REST({ version: '9' }).setToken(botsettings.DISCORD_BOT_TOKEN);
 
 (async () => {
   try {
     console.log('Started refreshing application (/) commands.');
 
     await rest.put(
-      Routes.applicationGuildCommands(botsettings.APPLICATION_ID, botsettings.GUILD_ID),
+      Routes.applicationGuildCommands(botsettings.DISCORD_APPLICATION_ID, botsettings.DISCORD_GUILD_ID),
       { body: commands },
     );
 
