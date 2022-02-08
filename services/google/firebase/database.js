@@ -4,13 +4,17 @@ const { database } = require('./firebase')
 const radStatusRef = ref(database, 'rad-status')
 
 module.exports = {
-    updateRadStatus(activities, status, avatar, username, discriminator) {
-        set(radStatusRef, {
+    async updateRadStatus(activities, status, avatar, username, discriminator) {
+        await set(radStatusRef, {
             activities,
             avatar,
             discriminator,
             status,
             username
+        }).then(a => {
+            console.log('success')
+        }).catch(e => {
+            console.log(e)
         })
     }
 }
