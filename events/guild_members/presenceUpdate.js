@@ -37,7 +37,6 @@ module.exports = {
 				console.log(error)
 			}
 		});
-		console.log(newPrecense)
 		updateRadStatus(activities, status, avatarURL, username, discriminator)
 	},
 };

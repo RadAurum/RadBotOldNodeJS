@@ -12,9 +12,7 @@ module.exports = {
             discriminator,
             status,
             username
-        }).then(a => {
-            console.log('success')
-        }).catch(e => {
+        }).then(() => { }).catch(e => {
             console.log(e)
         })
     }
