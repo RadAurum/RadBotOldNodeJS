@@ -28,8 +28,8 @@ module.exports = {
 						end: activity.timestamps.end ? dateToUnixTimestamp(activity.timestamps.end) : null
 					},
 					assets: {
-						largeText: assets.largeText,
-						smallText: assets.smallText,
+						largeText: assets.largeText || null,
+						smallText: assets.smallText || null,
 						largeImageURL: assets.largeImage ? assets.largeImageURL() : null,
 						smallImageURL: assets.smallImage ? assets.smallImageURL() : null
 					}
