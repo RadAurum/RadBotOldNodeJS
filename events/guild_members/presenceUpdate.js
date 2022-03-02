@@ -17,6 +17,7 @@ module.exports = {
 		newPrecense.activities.forEach(activity => {
 			let size = Object.keys(activities).length;
 			let assets = activity.assets || {};
+			console.log(activity.timestamps)
 			try {
 				activities[`activity-${size}`] = {
 					name: activity.name,
@@ -24,7 +25,7 @@ module.exports = {
 					details: activity.details,
 					state: activity.state,
 					timestamps: {
-						start: dateToUnixTimestamp(activity.timestamps.start),
+						start: activity.timestamps.start ? dateToUnixTimestamp(activity.timestamps.start) : null,
 						end: activity.timestamps.end ? dateToUnixTimestamp(activity.timestamps.end) : null
 					},
 					assets: {
